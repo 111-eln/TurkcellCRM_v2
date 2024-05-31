@@ -14,7 +14,8 @@ public class BasketItem implements Serializable {
     private static final long serialVersionUID = 8164464532246940545L;
     private String id;
     private int productId;
-    private String productName;
+    private String title;
+    private String description;
     private double price;
 
     public BasketItem(){

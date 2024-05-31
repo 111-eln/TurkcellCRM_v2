@@ -18,6 +18,10 @@ public class BasketController {
     public void addItem(@RequestParam String customerId,@RequestParam String productId){
         basketService.add(customerId,productId);
     }
+    @PostMapping("/createOrder")
+    public void createOrder(@RequestParam String customerId,@RequestParam String productId,@RequestParam int addressId){
+        basketService.createOrder(customerId,productId,addressId);
+    }
 
     @GetMapping
     public Map<String, Basket> getAllItems(){
