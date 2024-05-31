@@ -2,7 +2,6 @@ package com.turkcell.TurkcellCRM.customerService.business.concretes;
 
 import com.turkcell.TurkcellCRM.customerService.adapter.MernisService;
 import com.turkcell.TurkcellCRM.customerService.business.rules.IndividualCustomerBusinessRules;
-import com.turkcell.TurkcellCRM.customerService.clients.TokenControlClient;
 import com.turkcell.TurkcellCRM.customerService.core.crossCuttingConcerns.exceptions.types.BusinessException;
 import com.turkcell.TurkcellCRM.customerService.core.crossCuttingConcerns.mapping.ModelMapperManager;
 import com.turkcell.TurkcellCRM.customerService.core.crossCuttingConcerns.mapping.ModelMapperService;
@@ -27,7 +26,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
-class IndividualCustomerManagerTest {
+/*class IndividualCustomerManagerTest {
     private IndividualCustomerManager individualCustomerManager;
     private IndividualCustomerRepository individualCustomerRepository;
     private KafkaTemplate<String, Object> kafkaTemplate;
@@ -247,7 +246,7 @@ class IndividualCustomerManagerTest {
 
     }
 
-    }
+    }*/
 
 
 

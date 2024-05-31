@@ -1,7 +1,7 @@
 package com.turkcell.TurkcellCRM.basketService.controllers;
 
 import com.turkcell.TurkcellCRM.basketService.entities.Basket;
-import com.turkcell.TurkcellCRM.basketService.services.abstracts.BasketService;
+import com.turkcell.TurkcellCRM.basketService.business.services.abstracts.BasketService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

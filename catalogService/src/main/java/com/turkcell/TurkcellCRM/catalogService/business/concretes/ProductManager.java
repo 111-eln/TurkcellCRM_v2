@@ -2,6 +2,7 @@ package com.turkcell.TurkcellCRM.catalogService.business.concretes;
 
 import com.turkcell.TurkcellCRM.catalogService.business.dtos.BasketItemRequest;
 import com.turkcell.TurkcellCRM.catalogService.business.dtos.BasketItemResponse;
+import com.turkcell.TurkcellCRM.commonPackage.GetProductResponse;
 import com.turkcell.TurkcellCRM.commonPackage.ProductCreatedEvent;
 import com.turkcell.TurkcellCRM.catalogService.business.abstracts.ProductService;
 import com.turkcell.TurkcellCRM.catalogService.business.dtos.CreateProductsRequest;
@@ -12,8 +13,11 @@ import com.turkcell.TurkcellCRM.catalogService.entities.Product;
 import com.turkcell.TurkcellCRM.catalogService.producers.ProductProducer;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 @AllArgsConstructor
 public class ProductManager implements ProductService {
@@ -80,4 +84,11 @@ public class ProductManager implements ProductService {
     public CreatedProductResponse getById(int id) {
         return modelMapperService.forResponse().map(productRepository.findById(id), CreatedProductResponse.class);
     }
+    public boolean existProductById(@PathVariable int id){
+        Optional<Product> product=productRepository.findById(id);
+        if(product.isPresent()){
+            return true;
+        }
+        return false;
+    };
 }

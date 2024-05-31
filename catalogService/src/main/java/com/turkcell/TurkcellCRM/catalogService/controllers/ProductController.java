@@ -5,7 +5,7 @@ import com.turkcell.TurkcellCRM.catalogService.business.dtos.BasketItemRequest;
 import com.turkcell.TurkcellCRM.catalogService.business.dtos.BasketItemResponse;
 import com.turkcell.TurkcellCRM.catalogService.business.dtos.CreateProductsRequest;
 import com.turkcell.TurkcellCRM.catalogService.business.dtos.CreatedProductResponse;
-import com.turkcell.TurkcellCRM.catalogService.entities.Product;
+import com.turkcell.TurkcellCRM.commonPackage.GetProductResponse;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -44,16 +44,13 @@ public class ProductController {
     public CreatedProductResponse update(@Valid @RequestBody CreateProductsRequest createProductsRequest, @PathVariable int productId) {
         return productService.update(createProductsRequest,productId);
     }
-    @GetMapping("/getProductForBasket/{id}")
+
+
+    @GetMapping("existProductById/{id}")
     @ResponseStatus(HttpStatus.OK)
-
-    public Product getProductForBasket(@PathVariable int id) {
-        return productService.getProductForBasket(id);
-    }
-
+    public boolean existProductById(@PathVariable int id){ return productService.existProductById(id);};
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-
     public CreatedProductResponse getById(@PathVariable int id) {
         return productService.getById(id);
     }
