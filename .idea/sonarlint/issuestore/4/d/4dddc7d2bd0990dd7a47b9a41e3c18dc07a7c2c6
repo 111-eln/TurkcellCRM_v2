@@ -1,0 +1,6 @@
+
+¶
+java:S14882"nImmediately return this expression instead of assigning it to the temporary variable "getContactInfoResponse".(ûÎÈÝûÿÿÿÿ8«‡ûÁ÷1J$9ee65880-4fc0-4c13-8161-1beb09cf2831
+¡	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(•£„Êúÿÿÿÿ8°‡ûÁ÷1J$891e5003-b968-433e-87fa-d20b19880b26
+“
+java:S36551"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(¦ášÿ8ø‡ûÁ÷1J$59d50a7e-9ec1-45ad-b86e-2f026f51975e

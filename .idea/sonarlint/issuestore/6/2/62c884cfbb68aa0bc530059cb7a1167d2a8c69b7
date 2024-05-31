@@ -1,0 +1,17 @@
+
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Äşñ øÿÿÿÿ
+K
+java:S6856!"5Bind path variable "addressId" to a method parameter.(»ó¾
+z
+java:S1128"dRemove this unused import 'com.turkcell.TurkcellCRM.orderService.business.abstracts.ProductService'.(¼¿Ë
+‡
+java:S1128"lRemove this unused import 'com.turkcell.TurkcellCRM.orderService.dtos.requests.create.CreateProductRequest'.(ËË³Åûÿÿÿÿ
+‡
+java:S1128"lRemove this unused import 'com.turkcell.TurkcellCRM.orderService.dtos.requests.update.UpdateProductRequest'.(ÏÃ¿Òÿÿÿÿÿ
+„
+java:S1128
+"nRemove this unused import 'com.turkcell.TurkcellCRM.orderService.dtos.responses.create.CreateProductResponse'.(¶æ‰±
+ƒ
+java:S1128"hRemove this unused import 'com.turkcell.TurkcellCRM.orderService.dtos.responses.get.GetProductResponse'.(±ê¹˜øÿÿÿÿ
+„
+java:S1128"nRemove this unused import 'com.turkcell.TurkcellCRM.orderService.dtos.responses.update.UpdateProductResponse'.(¡“‹¡

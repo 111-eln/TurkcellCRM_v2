@@ -1,0 +1,6 @@
+
+­
+java:S14880"jImmediately return this expression instead of assigning it to the temporary variable "getAddressResponse".(şÔé8äµïÁ÷1J$f78db30b-2dc2-4975-8544-8cca306bc8f2
+¡	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(•£„Êúÿÿÿÿ8éµïÁ÷1J$8b4c9116-855b-4576-b866-672de46e68b2
+“
+java:S3655/"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(‡ÈÔµ8‰¶ïÁ÷1J$91849242-13f3-4609-b4e2-509dc55b426c

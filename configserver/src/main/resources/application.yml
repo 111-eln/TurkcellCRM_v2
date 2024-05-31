@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: ConfigServer
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/111-eln/TurkcellCRM-config-server.git
+server:
+  port: 8052
