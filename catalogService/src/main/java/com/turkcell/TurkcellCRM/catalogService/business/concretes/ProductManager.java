@@ -39,6 +39,11 @@ public class ProductManager implements ProductService {
     }
 
     @Override
+    public Product getProductForBasket(int id) {
+        return productRepository.findById(id).orElse(null);
+    }
+
+    @Override
     public CreatedProductResponse update(CreateProductsRequest productRequest,int id) {
         Product product=modelMapperService.forRequest().map(productRequest, Product.class);
         Product dbProduct=productRepository.save(product);

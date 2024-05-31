@@ -7,4 +7,6 @@ import java.util.Map;
 public interface BasketService {
     void add(String customerId,String productId);
     Map<String, Basket> getAllItems();
+
+    void createOrder(String customerId,String productId);
 }

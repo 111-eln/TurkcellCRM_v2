@@ -4,6 +4,7 @@ import com.turkcell.TurkcellCRM.catalogService.business.dtos.BasketItemRequest;
 import com.turkcell.TurkcellCRM.catalogService.business.dtos.BasketItemResponse;
 import com.turkcell.TurkcellCRM.catalogService.business.dtos.CreateProductsRequest;
 import com.turkcell.TurkcellCRM.catalogService.business.dtos.CreatedProductResponse;
+import com.turkcell.TurkcellCRM.catalogService.entities.Product;
 
 import java.util.List;
 
@@ -12,7 +13,8 @@ public interface ProductService {
 
 
     void delete(int id);
-    //    GetIndividualCustomerResponse getById(int id, String authorizationHeader);
+    Product getProductForBasket(int id);
+
     CreatedProductResponse update(CreateProductsRequest productRequest,int id);
     boolean controlProductStock(String productTitle);
     boolean controlProductTitle(String productTitle);
