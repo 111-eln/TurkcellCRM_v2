@@ -2,19 +2,22 @@ package com.turkcell.TurkcellCRM.basketService.business.services.concretes;
 
 import com.turkcell.TurkcellCRM.basketService.business.rules.BasketBusinessRules;
 import com.turkcell.TurkcellCRM.basketService.business.services.abstracts.BasketService;
+import com.turkcell.TurkcellCRM.basketService.clients.CreateOrderClient;
 import com.turkcell.TurkcellCRM.basketService.clients.CustomerClient;
 import com.turkcell.TurkcellCRM.basketService.clients.ProductClient;
 import com.turkcell.TurkcellCRM.basketService.core.exceptions.types.BusinessException;
 import com.turkcell.TurkcellCRM.basketService.core.mapping.ModelMapperService;
+import com.turkcell.TurkcellCRM.basketService.dtos.CreateOrderRequest;
 import com.turkcell.TurkcellCRM.basketService.entities.Basket;
 import com.turkcell.TurkcellCRM.basketService.entities.BasketItem;
+import com.turkcell.TurkcellCRM.basketService.entities.Product;
 import com.turkcell.TurkcellCRM.basketService.repositories.RedisRepository;
 import com.turkcell.TurkcellCRM.commonPackage.GetProductResponse;
-import com.turkcell.TurkcellCRM.commonPackage.Product;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -24,6 +27,7 @@ public class BasketManager implements BasketService {
     private RedisRepository redisRepository;
     private ProductClient productClient;
     private CustomerClient customerClient;
+    private CreateOrderClient orderClient;
     private BasketBusinessRules basketBusinessRules;
     private ModelMapperService modelMapperService;
 
@@ -33,7 +37,6 @@ public class BasketManager implements BasketService {
 
         basketBusinessRules.customerShoulBeExists(customerId);
         basketBusinessRules.productShouldBeExists(productId);
-
 
         Basket basket = redisRepository.getBasketByCustomerId(customerId);
 
@@ -48,7 +51,7 @@ public class BasketManager implements BasketService {
 
         BasketItem basketItem = new BasketItem();
         basketItem.setProductId(Integer.parseInt(productId));
-        basketItem.setProductName(product.getTitle());
+        basketItem.setTitle(product.getTitle());
         basketItem.setPrice(product.getPrice());
         basket.setCustomerId(customerId);
         basket.setTotalPrice(basket.getTotalPrice()+basketItem.getPrice());
@@ -59,5 +62,33 @@ public class BasketManager implements BasketService {
     @Override
     public Map<String, Basket> getAllItems() {
        return redisRepository.getAllItems();
+    }
+
+
+    @Override
+    public void createOrder(String customerId, String productId,int addressId) {
+        Basket basket = redisRepository.getBasketByCustomerId(customerId);
+//       createOrderRequest.setAddressId(addressId);
+//       createOrderRequest.setCustomerId(Integer.parseInt(customerId));
+//       createOrderRequest.setTotalAmount((int)basket.getTotalPrice());
+
+
+        List<BasketItem> basketItems=basket.getBasketItems();
+
+        List<Product> productList =basketItems.stream().map(basketItem->  modelMapperService.forResponse().map(basketItem, Product.class)).toList();
+
+        CreateOrderRequest createOrderRequest=new CreateOrderRequest(addressId,Integer.parseInt(customerId),(int)basket.getTotalPrice(),productList);
+
+
+//        List<Product> productList=new ArrayList<>();
+//        for (int i = 0; i < basket.getBasketItems().size(); i++) {
+//            productList.add(null);
+//        }
+//       for (int i=1;i<basket.getBasketItems().size();i++) {
+//           productList.get(1).setDescription(basket.getBasketItems().get(1).getDescription());
+//           productList.get(1).setProductName(basket.getBasketItems().get(1).getProductName());
+//           productList.get(1).setPrice((int)basket.getBasketItems().get(1).getPrice());        }
+//       createOrderRequest.setProducts(productList);
+        orderClient.add(createOrderRequest);
     }
 }

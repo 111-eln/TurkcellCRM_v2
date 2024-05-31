@@ -42,10 +42,6 @@ public class ProductManager implements ProductService {
         productRepository.deleteById(id);
     }
 
-    @Override
-    public Product getProductForBasket(int id) {
-        return productRepository.findById(id).orElse(null);
-    }
 
     @Override
     public CreatedProductResponse update(CreateProductsRequest productRequest,int id) {
@@ -81,8 +77,8 @@ public class ProductManager implements ProductService {
                         .map(product, CreatedProductResponse.class)).toList();    }
 
     @Override
-    public CreatedProductResponse getById(int id) {
-        return modelMapperService.forResponse().map(productRepository.findById(id), CreatedProductResponse.class);
+    public GetProductResponse getById(int id) {
+        return modelMapperService.forResponse().map(productRepository.findById(id), GetProductResponse.class);
     }
     public boolean existProductById(@PathVariable int id){
         Optional<Product> product=productRepository.findById(id);

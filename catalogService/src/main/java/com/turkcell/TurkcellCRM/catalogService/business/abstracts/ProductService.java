@@ -20,5 +20,5 @@ public interface ProductService {
     boolean controlProductTitle(String productTitle);
     List<CreatedProductResponse> getAll();
      boolean existProductById(int id);
-    CreatedProductResponse getById(int id);
+    GetProductResponse getById(int id);
 }

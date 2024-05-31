@@ -51,7 +51,7 @@ public class ProductController {
     public boolean existProductById(@PathVariable int id){ return productService.existProductById(id);};
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public CreatedProductResponse getById(@PathVariable int id) {
+    public GetProductResponse getById(@PathVariable int id) {
         return productService.getById(id);
     }
 
