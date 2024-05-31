@@ -1,5 +1,6 @@
 package com.turkcell.TurkcellCRM.basketService.entities;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
