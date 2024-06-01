@@ -5,7 +5,6 @@ import com.turkcell.TurkcellCRM.basketService.business.messages.Messages;
 import com.turkcell.TurkcellCRM.basketService.clients.CustomerClient;
 import com.turkcell.TurkcellCRM.basketService.clients.ProductClient;
 import com.turkcell.TurkcellCRM.basketService.core.exceptions.types.BusinessException;
-import com.turkcell.TurkcellCRM.commonPackage.Product;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
