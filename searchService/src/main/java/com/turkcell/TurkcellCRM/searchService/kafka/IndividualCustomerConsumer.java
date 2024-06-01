@@ -20,6 +20,7 @@ public class IndividualCustomerConsumer {
     public void consume(IndividualCustomerCreatedEvent customerCreatedEvent){
 
         IndividualCustomer customer = new IndividualCustomer();
+
         customer.setBirthDate(customerCreatedEvent.getBirthDate());
         customer.setGender(customerCreatedEvent.getGender().toString());
         customer.setFatherName(customerCreatedEvent.getFatherName());

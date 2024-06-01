@@ -26,14 +26,13 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
-/*class IndividualCustomerManagerTest {
+class IndividualCustomerManagerTest {
     private IndividualCustomerManager individualCustomerManager;
     private IndividualCustomerRepository individualCustomerRepository;
     private KafkaTemplate<String, Object> kafkaTemplate;
     private ModelMapper modelMapper;
     private ModelMapperService modelMapperService;
     private MernisService mernisService;
-    private TokenControlClient tokenControlClient;
     private IndividualCustomerBusinessRules rules;
 
 
@@ -43,8 +42,7 @@ import static org.mockito.Mockito.*;
         modelMapper = new ModelMapper();
         modelMapperService=new ModelMapperManager(modelMapper);
         mernisService = mock(MernisService.class);
-        tokenControlClient = mock(TokenControlClient.class);
-        rules = new IndividualCustomerBusinessRules(individualCustomerRepository, mernisService,tokenControlClient);
+        rules = new IndividualCustomerBusinessRules(individualCustomerRepository, mernisService);
         kafkaTemplate = mock(KafkaTemplate.class);
         IndividualCustomerProducer producer = new IndividualCustomerProducer(kafkaTemplate);
         individualCustomerManager = new IndividualCustomerManager(individualCustomerRepository,modelMapperService,rules,producer);
@@ -54,54 +52,34 @@ import static org.mockito.Mockito.*;
     @Test
     void deleteById(){
         when(individualCustomerRepository.findById(1)).thenReturn(Optional.of(new IndividualCustomer()));
-        when(tokenControlClient.tokenControl(anyString())).thenReturn(true);
 
-        individualCustomerManager.delete(1,"Authorization");
+        individualCustomerManager.delete(1);
         assert true;
     }
-    @Test
-    void deleteWithUnAuthorizedException(){
-        when(individualCustomerRepository.findById(1)).thenReturn(Optional.of(new IndividualCustomer()));
-        when(tokenControlClient.tokenControl(anyString())).thenReturn(false);
 
-        assertThrows(BusinessException.class, () -> {
-            individualCustomerManager.delete(1,"Authorization" );
-        });
-    }
     @Test
     void deleteWithNotExistsId_ShouldThrowException(){
         when(individualCustomerRepository.findById(1)).thenReturn(Optional.empty());
 
         assertThrows(BusinessException.class, () -> {
-            individualCustomerManager.delete(1,"Authorization" );
+            individualCustomerManager.delete(1);
         });
     }
 
     @Test
     void getById(){
         when(individualCustomerRepository.findById(1)).thenReturn(Optional.of(new IndividualCustomer()));
-        when(tokenControlClient.tokenControl(anyString())).thenReturn(true);
 
-        individualCustomerManager.getById(1,"Authorization" );
+        individualCustomerManager.getById(1);
         assert true;
-    }
-    @Test
-    void getByIdWithUnAuthorizedException(){
-        when(individualCustomerRepository.findById(1)).thenReturn(Optional.of(new IndividualCustomer()));
-        when(tokenControlClient.tokenControl(anyString())).thenReturn(false);
-
-        assertThrows(BusinessException.class, () -> {
-            individualCustomerManager.getById(1,"Authorization" );
-        });
     }
 
     @Test
     void getByIdWithNotExistsId_ShouldThrowException(){
         when(individualCustomerRepository.findById(1)).thenReturn(Optional.empty());
-        when(tokenControlClient.tokenControl(anyString())).thenReturn(true);
 
         assertThrows(BusinessException.class, () -> {
-            individualCustomerManager.getById(1,"Authorization");
+            individualCustomerManager.getById(1);
         });
 
     }
@@ -115,30 +93,20 @@ import static org.mockito.Mockito.*;
         list.add(customer1);
         list.add(customer2);
         when(individualCustomerRepository.findAll()).thenReturn(list);
-        when(tokenControlClient.tokenControl(anyString())).thenReturn(true);
-        List<GetAllIndividualCustomerResponse> result = individualCustomerManager.getAll("Authorization");
+        List<GetAllIndividualCustomerResponse> result = individualCustomerManager.getAll();
 
         assertEquals(2, result.size());
     }
     @Test
-    void getAllWithUnAuthorizedException(){
-        when(tokenControlClient.tokenControl(anyString())).thenReturn(false);
-        assertThrows(BusinessException.class, () -> {
-            individualCustomerManager.getAll("Authorization" );
-        });
-    }
-
-    @Test
     void getAllShouldThrowException(){
-        when(individualCustomerRepository.findAll()).thenReturn(new ArrayList<IndividualCustomer>());
+        when(individualCustomerRepository.findAll()).thenReturn(new ArrayList<>());
 
         assertThrows(BusinessException.class, () -> {
-            individualCustomerManager.getAll("Authorization");
+            individualCustomerManager.getAll();
         });
     }
 
 
-    //TODO: add için yazılan testlerdeki ortak alanları fonksiyona çevir ve o fonksiyonları çağır.
     @Test
     void add(){
         IndividualCustomer customer = new IndividualCustomer();
@@ -152,7 +120,7 @@ import static org.mockito.Mockito.*;
         customer.setMotherName("Deneme");
 
         CreateIndividualCustomerRequest request = new CreateIndividualCustomerRequest();
-//
+
         request= modelMapperService.forRequest().map(customer,CreateIndividualCustomerRequest.class);
 
         when(individualCustomerRepository.findByNationalityNumber("98765432102")).thenReturn(Optional.empty());
@@ -161,16 +129,7 @@ import static org.mockito.Mockito.*;
 
 
         when(mernisService.checkIsRealPerson(request)).thenReturn(true);
-        when(tokenControlClient.tokenControl(anyString())).thenReturn(true);
-        individualCustomerManager.add(request,"Authorization");
-    }
-    @Test
-    void addWithUnAuthorizedException(){
-        when(tokenControlClient.tokenControl(anyString())).thenReturn(false);
-        CreateIndividualCustomerRequest request = new CreateIndividualCustomerRequest();
-        assertThrows(BusinessException.class, () -> {
-            individualCustomerManager.add(request,"Authorization" );
-        });
+        individualCustomerManager.add(request);
     }
 
     @Test
@@ -191,7 +150,7 @@ import static org.mockito.Mockito.*;
         when(individualCustomerRepository.save(customer)).thenReturn(new IndividualCustomer());
 
         assertThrows(BusinessException.class, () -> {
-            individualCustomerManager.add(request,"Authorization");
+            individualCustomerManager.add(request);
         });
 
     }
@@ -215,7 +174,7 @@ import static org.mockito.Mockito.*;
         when(mernisService.checkIsRealPerson(request)).thenReturn(false);
 
         assertThrows(BusinessException.class, () -> {
-            individualCustomerManager.add(request,"Authorization");
+            individualCustomerManager.add(request);
         });
     }
 
@@ -240,15 +199,8 @@ import static org.mockito.Mockito.*;
         when(individualCustomerRepository.findById(1)).thenReturn(Optional.of(new IndividualCustomer()));
         when(individualCustomerRepository.save(customer)).thenReturn(new IndividualCustomer());
         when(mernisService.checkIsRealPerson(any())).thenReturn(true);
-        when(tokenControlClient.tokenControl(anyString())).thenReturn(true);
 
-        individualCustomerManager.update(request,1,"Autherization");
+        individualCustomerManager.update(request,1);
 
     }
-
-    }*/
-
-
-
-
-    // TODO: update için gerekli test fonksiyonlarını yaz
+}

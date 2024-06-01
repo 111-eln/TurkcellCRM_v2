@@ -1,2 +1,8 @@
 
-¡	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(“Á“ûÿÿÿÿ8Ì©ú¥ı1J$a5fdc8d1-4291-4501-9753-049b4904e766
+¡	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(“Á“ûÿÿÿÿ8Ì©ú¥ı1J$acc22330-b502-4128-83fd-19bec0e4a7d9
+“
+java:S3655Q"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(¦ïÏá8²Áœªı1J$50e0e976-52fe-4742-bfa5-8967dcd2b228
+“
+java:S3655a"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(¦ïÏá8²Áœªı1J$49a02e01-dfa8-45f9-a582-56c383d33107
+’
+java:S36555"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(Ââ28²Áœªı1J$7c643aac-edbf-440e-b045-2db1b9e28c2a

@@ -1,4 +1,8 @@
 
 r
-java:S1104"\Make searchRepository a static final constant or non-public and provide accessors if needed.(ˆýŠÊ
+java:S1104"\Make searchRepository a static final constant or non-public and provide accessors if needed.(ˆýŠÊ
+…
+java:S1104"cMake searchProductRepository a static final constant or non-public and provide accessors if needed.(êÉÛ–ÿÿÿÿÿ8á¼Â©ý1
+ƒ
+java:S1104"aMake addItemToBasketClient a static final constant or non-public and provide accessors if needed.(ù—äºÿÿÿÿÿ8â¼Â©ý1
 t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(žù¢žýÿÿÿÿ

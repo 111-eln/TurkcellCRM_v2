@@ -1,13 +1,11 @@
 package com.turkcell.TurkcellCRM.catalogService.business.concretes;
 
-import com.turkcell.TurkcellCRM.catalogService.business.dtos.BasketItemRequest;
-import com.turkcell.TurkcellCRM.catalogService.business.dtos.BasketItemResponse;
 import com.turkcell.TurkcellCRM.catalogService.business.rules.CatalogServiceRules;
 import com.turkcell.TurkcellCRM.commonPackage.GetProductResponse;
 import com.turkcell.TurkcellCRM.commonPackage.ProductCreatedEvent;
 import com.turkcell.TurkcellCRM.catalogService.business.abstracts.ProductService;
-import com.turkcell.TurkcellCRM.catalogService.business.dtos.CreateProductsRequest;
-import com.turkcell.TurkcellCRM.catalogService.business.dtos.CreatedProductResponse;
+import com.turkcell.TurkcellCRM.catalogService.business.dtos.requests.CreateProductsRequest;
+import com.turkcell.TurkcellCRM.catalogService.business.dtos.responses.CreatedProductResponse;
 import com.turkcell.TurkcellCRM.catalogService.core.crossCuttingConcerns.mapping.ModelMapperService;
 import com.turkcell.TurkcellCRM.catalogService.dataAccess.ProductRepository;
 import com.turkcell.TurkcellCRM.catalogService.entities.Product;
@@ -15,7 +13,6 @@ import com.turkcell.TurkcellCRM.catalogService.producers.ProductProducer;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -29,6 +26,7 @@ public class ProductManager implements ProductService {
     private ProductRepository productRepository;
     private ProductProducer productProducer;
     private CatalogServiceRules catalogServiceRules;
+
     @Transactional
     @Override
     public CreatedProductResponse add(CreateProductsRequest productsRequest) {

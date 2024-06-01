@@ -26,11 +26,11 @@ import java.util.Optional;
 @Service
 @AllArgsConstructor
 public class IndividualCustomerManager implements IndividualCustomerService {
-    private final IndividualCustomerRepository individualCustomerRepository;
+
+    private IndividualCustomerRepository individualCustomerRepository;
     private ModelMapperService modelMapperService;
     private IndividualCustomerBusinessRules individualCustomerBusinessRules;
     private IndividualCustomerProducer individualCustomerProducer;
-
 
     @Transactional
     @Override
@@ -51,7 +51,6 @@ public class IndividualCustomerManager implements IndividualCustomerService {
         return modelMapperService.forResponse().map(createdCustomer, CreatedIndividualCustomerResponse.class);
     }
 
-
     @Transactional
     @Override
     public void delete(int id) {
@@ -65,6 +64,7 @@ public class IndividualCustomerManager implements IndividualCustomerService {
 
         individualCustomerRepository.save(currentCustomer);
     }
+
     @Override
     public boolean existCustomerById(int id) {
 

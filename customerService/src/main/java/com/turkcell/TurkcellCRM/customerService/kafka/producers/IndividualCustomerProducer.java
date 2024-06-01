@@ -11,7 +11,6 @@ import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 
 @Service
-
 public class IndividualCustomerProducer {
     private static final Logger LOGGER = LoggerFactory.getLogger(IndividualCustomerProducer.class);
     private final KafkaTemplate<String,Object> kafkaTemplate;

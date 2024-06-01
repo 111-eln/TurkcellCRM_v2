@@ -1,3 +1,6 @@
 
-t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(…×½¦ûÿÿÿÿ
-V	java:S125"<This block of commented-out lines of code should be removed.(¤Þ«¡ùÿÿÿÿ
+l
+java:S2629"$Invoke method(s) only conditionally.(ÞûàÓþÿÿÿÿ8ƒˆë¦ý1J$017e82cb-43a8-4346-a4f8-b7b007bc8012
+š	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(…×½¦ûÿÿÿÿJ$e733c717-e9fa-41a0-9131-0586f16dcbbe
+y
+java:S1128"6Remove this unused import 'lombok.extern.slf4j.Slf4j'.(ûúÄ®8«Šë¦ý1J$c557ed40-6329-47fe-a3c2-578d27ec53d5

@@ -1,5 +1,4 @@
 package com.turkcell.TurkcellCRM.identityService.core;
-//import com.turkcell.TurkcellCRM.CoreService.configuration.BaseSecurityService;
 
 import com.turkcell.TurkcellCRM.CoreService.configuration.BaseSecurityService;
 import lombok.RequiredArgsConstructor;

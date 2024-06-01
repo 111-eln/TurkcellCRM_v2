@@ -1,10 +1,8 @@
 package com.turkcell.TurkcellCRM.catalogService.controllers;
 
 import com.turkcell.TurkcellCRM.catalogService.business.abstracts.ProductService;
-import com.turkcell.TurkcellCRM.catalogService.business.dtos.BasketItemRequest;
-import com.turkcell.TurkcellCRM.catalogService.business.dtos.BasketItemResponse;
-import com.turkcell.TurkcellCRM.catalogService.business.dtos.CreateProductsRequest;
-import com.turkcell.TurkcellCRM.catalogService.business.dtos.CreatedProductResponse;
+import com.turkcell.TurkcellCRM.catalogService.business.dtos.requests.CreateProductsRequest;
+import com.turkcell.TurkcellCRM.catalogService.business.dtos.responses.CreatedProductResponse;
 import com.turkcell.TurkcellCRM.commonPackage.GetProductResponse;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;

@@ -1,0 +1,8 @@
+
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ğØëÿÿÿÿÿ
+2
+java:S11163"Remove this empty statement.(œÊ ö
+z
+java:S1128"dRemove this unused import 'com.turkcell.TurkcellCRM.catalogService.business.dtos.BasketItemRequest'.(Ÿ¸§Í
+€
+java:S1128"eRemove this unused import 'com.turkcell.TurkcellCRM.catalogService.business.dtos.BasketItemResponse'.(àÄÙûûÿÿÿÿ

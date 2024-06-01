@@ -1,4 +1,4 @@
-package com.turkcell.TurkcellCRM.catalogService.business.dtos;
+package com.turkcell.TurkcellCRM.catalogService.business.dtos.requests;
 
 import lombok.*;
 import org.antlr.v4.runtime.misc.NotNull;
