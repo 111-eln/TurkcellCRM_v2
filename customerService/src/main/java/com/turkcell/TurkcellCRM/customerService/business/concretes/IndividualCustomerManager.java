@@ -36,7 +36,6 @@ public class IndividualCustomerManager implements IndividualCustomerService {
     @Override
     public CreatedIndividualCustomerResponse add(CreateIndividualCustomerRequest createIndividualCustomerRequest) {
 
-//        individualCustomerBusinessRules.checkToken(authorizationHeader);
         individualCustomerBusinessRules.customerAlreadyExists(createIndividualCustomerRequest.getNationalityNumber());
         individualCustomerBusinessRules.checkMernis(createIndividualCustomerRequest);
 
@@ -57,13 +56,14 @@ public class IndividualCustomerManager implements IndividualCustomerService {
     @Override
     public void delete(int id) {
 
-//        individualCustomerBusinessRules.checkToken(authorizationHeader);
         individualCustomerBusinessRules.customerShouldBeExists(id);
 
         IndividualCustomer currentCustomer = this.individualCustomerRepository.findById(id).get();
 
         currentCustomer.setDeleted(true);
         currentCustomer.setDeletedDate(LocalDateTime.now());
+
+        individualCustomerRepository.save(currentCustomer);
     }
     @Override
     public boolean existCustomerById(int id) {
@@ -78,7 +78,6 @@ public class IndividualCustomerManager implements IndividualCustomerService {
     @Override
     public GetIndividualCustomerResponse getById(int id) {
 
-//        individualCustomerBusinessRules.checkToken(authorizationHeader);
         individualCustomerBusinessRules.customerShouldBeExists(id);
 
         IndividualCustomer individualCustomer = individualCustomerRepository.findById(id).get();
@@ -91,7 +90,6 @@ public class IndividualCustomerManager implements IndividualCustomerService {
     @Override
     public UpdatedIndividualCustomerResponse update(UpdateIndividualCustomerRequest updateCustomerRequest, int customerId) {
 
-//        individualCustomerBusinessRules.checkToken(authorizationHeader);
         individualCustomerBusinessRules.customerShouldBeExists(customerId);
         individualCustomerBusinessRules.checkMernis(modelMapperService.forRequest().map(updateCustomerRequest,CreateIndividualCustomerRequest.class)); //TODO: Buraya bakılacak
 
@@ -108,7 +106,6 @@ public class IndividualCustomerManager implements IndividualCustomerService {
     @Override
     public List<GetAllIndividualCustomerResponse> getAll() {
 
-//        individualCustomerBusinessRules.checkToken(authorizationHeader);
         individualCustomerBusinessRules.customersShouldBeExist();
 
         List<IndividualCustomer> customers = individualCustomerRepository.findAll();

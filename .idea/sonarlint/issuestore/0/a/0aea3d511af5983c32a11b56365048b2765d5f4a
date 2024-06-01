@@ -1,6 +1,12 @@
 
 ®
-java:S1488J"kImmediately return this expression instead of assigning it to the temporary variable "getCustomerResponse".(Ôµ”«8 ¡êÞø1J$3744077a-0413-4632-aee3-88c172f1b7ec
-¡	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(•£„Êúÿÿÿÿ8£¡êÞø1J$928b1132-9eee-4e2c-ae65-b370701b4805
+java:S1488T"kImmediately return this expression instead of assigning it to the temporary variable "getCustomerResponse".(Ôµ”«8 ¡êÞø1J$6116e5ae-4563-4cb4-b974-96790e191185
+¡	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(•£„Êúÿÿÿÿ8£¡êÞø1J$71b02a9b-4c0b-46af-a2a5-f3fad608ed2a
+“
+java:S3655="PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(®°­ 8ÝÕâ¥ý1J$07346da3-cdc1-4c2e-9958-cb0567c33b40
+“
+java:S3655S"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(°Ÿ­Ù8ÜÕâ¥ý1J$036921f7-f74b-441a-a64c-ac4b7ee35d94
+‰
+java:S1126H"AReplace this if-then-else statement by a single return statement.(„¬—Óùÿÿÿÿ8áÖâ¥ý1J$b876fb49-f774-44e8-b8b9-a729b57a9be9
 u
-java:S1135U"2Complete the task associated to this TODO comment.( £²Š8Ç¡êÞø1J$bd5bd346-0ca7-4819-bc32-65129ae0287a
+java:S1135^"2Complete the task associated to this TODO comment.( £²Š8©Íã¥ý1J$4156792c-5842-46cc-ab68-ebd7b1646fcb

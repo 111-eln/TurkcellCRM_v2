@@ -21,6 +21,7 @@ public class AccountManager implements AccountService {
    private ModelMapperService modelMapperService;
     @Override
     public CreateAccountResponse add(CreateAccountRequest createAccountRequest) {
+
        Account account=modelMapperService.forRequest().map(createAccountRequest,Account.class);
        Account dbAccount=accountRepository.save(account);
         return modelMapperService.forResponse().map(dbAccount, CreateAccountResponse.class);

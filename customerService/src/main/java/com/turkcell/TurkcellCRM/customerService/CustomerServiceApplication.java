@@ -8,11 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
-//@EnableFeignClients
+@EnableFeignClients
 @EnableSecurity()
-
-//@ComponentScan(basePackages = {"com.turkcell.TurkcellCRM.CoreService.configuration"})
-
 public class CustomerServiceApplication {
 
     public static void main(String[] args) {

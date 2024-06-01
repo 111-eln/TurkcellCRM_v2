@@ -26,7 +26,6 @@ public class BasketManager implements BasketService {
 
     private RedisRepository redisRepository;
     private ProductClient productClient;
-    private CustomerClient customerClient;
     private CreateOrderClient orderClient;
     private BasketBusinessRules basketBusinessRules;
     private ModelMapperService modelMapperService;
@@ -55,7 +54,7 @@ public class BasketManager implements BasketService {
         basketItem.setPrice(product.getPrice());
         basket.setCustomerId(customerId);
         basket.setTotalPrice(basket.getTotalPrice()+basketItem.getPrice());
-        boolean add = basket.getBasketItems().add(basketItem);
+        basket.getBasketItems().add(basketItem);
         redisRepository.addItem(basket);
     }
 
@@ -67,11 +66,13 @@ public class BasketManager implements BasketService {
 
     @Override
     public void createOrder(String customerId, String productId,int addressId) {
-        Basket basket = redisRepository.getBasketByCustomerId(customerId);
-//       createOrderRequest.setAddressId(addressId);
-//       createOrderRequest.setCustomerId(Integer.parseInt(customerId));
-//       createOrderRequest.setTotalAmount((int)basket.getTotalPrice());
 
+        Basket basket = redisRepository.getBasketByCustomerId(customerId);
+
+        if (basket == null) {
+            basket = new Basket();
+            basket.setCustomerId(customerId);
+        }
 
         List<BasketItem> basketItems=basket.getBasketItems();
 
@@ -79,16 +80,6 @@ public class BasketManager implements BasketService {
 
         CreateOrderRequest createOrderRequest=new CreateOrderRequest(addressId,Integer.parseInt(customerId),(int)basket.getTotalPrice(),productList);
 
-
-//        List<Product> productList=new ArrayList<>();
-//        for (int i = 0; i < basket.getBasketItems().size(); i++) {
-//            productList.add(null);
-//        }
-//       for (int i=1;i<basket.getBasketItems().size();i++) {
-//           productList.get(1).setDescription(basket.getBasketItems().get(1).getDescription());
-//           productList.get(1).setProductName(basket.getBasketItems().get(1).getProductName());
-//           productList.get(1).setPrice((int)basket.getBasketItems().get(1).getPrice());        }
-//       createOrderRequest.setProducts(productList);
         orderClient.add(createOrderRequest);
     }
 }

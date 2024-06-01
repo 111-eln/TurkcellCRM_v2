@@ -1,0 +1,6 @@
+
+•	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(½Ë¥±J$ae420a2d-95ac-4622-ab19-fdaefaa3d1f5
+|
+java:S1128"ZRemove this unused import 'com.turkcell.TurkcellCRM.basketService.clients.CustomerClient'.(Åö¢±üÿÿÿÿ8Œ«ò¤ý1
+®
+java:S1128"kRemove this unused import 'com.turkcell.TurkcellCRM.basketService.core.exceptions.types.BusinessException'.(Õ¹ÍÈ8‚ä×¤ý1J$9d4d2b81-4dae-4c30-b308-04b0efac3080
