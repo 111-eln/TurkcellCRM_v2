@@ -5,9 +5,6 @@ import com.turkcell.TurkcellCRM.commonPackage.OrderCreatedForAccountEvent;
 import com.turkcell.TurkcellCRM.orderService.business.abstracts.OrderService;
 import com.turkcell.TurkcellCRM.orderService.business.rules.OrderBusinnesRules;
 import com.turkcell.TurkcellCRM.orderService.clients.IsCustomerExistClient;
-import com.turkcell.TurkcellCRM.orderService.clients.ProductStockIsEnoughClient;
-import com.turkcell.TurkcellCRM.orderService.clients.ProductTitleIsExistClient;
-import com.turkcell.TurkcellCRM.orderService.core.exceptions.types.BusinessException;
 import com.turkcell.TurkcellCRM.orderService.core.mapping.ModelMapperService;
 import com.turkcell.TurkcellCRM.orderService.dataAccess.OrderRepository;
 import com.turkcell.TurkcellCRM.orderService.dataAccess.ProductRepository;
@@ -23,7 +20,6 @@ import com.turkcell.TurkcellCRM.orderService.kafka.producers.OrderForAccountProd
 import com.turkcell.TurkcellCRM.orderService.kafka.producers.OrderProducer;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -35,7 +31,6 @@ public class OrderManager implements OrderService {
     private ModelMapperService modelMapperService;
     private OrderRepository orderRepository;
     private ProductRepository productRepository;
-    private IsCustomerExistClient isCustomerExistClient;
     private OrderProducer orderProducer;
     private OrderForAccountProducer orderForAccountProducer;
     private OrderBusinnesRules orderBusinnesRules;

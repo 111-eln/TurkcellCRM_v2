@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: identityService
+  config:
+    import: configserver:http://localhost:8052/
+  cloud:
+    config:
+      profile: dev

@@ -1,7 +1,7 @@
 package com.turkcell.TurkcellCRM.invoiceService.kafka;
 
 import com.turkcell.TurkcellCRM.commonPackage.OrderCreatedEvent;
-import com.turkcell.TurkcellCRM.invoiceService.business.InvoiceService;
+import com.turkcell.TurkcellCRM.invoiceService.business.abstracts.InvoiceService;
 import com.turkcell.TurkcellCRM.invoiceService.entities.Order;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;

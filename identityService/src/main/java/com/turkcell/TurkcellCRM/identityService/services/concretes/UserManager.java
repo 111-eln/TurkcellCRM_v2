@@ -25,7 +25,9 @@ public class UserManager implements UserService {
 
     @Override
     public void add(RegisterRequest request) {
+
         User user = new User();
+
         user.setEmail(request.getEmail());
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());

@@ -1,6 +1,5 @@
 package com.turkcell.TurkcellCRM.commonPackage;
 
-import com.turkcell.TurkcellCRM.commonPackage.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -15,7 +14,6 @@ import lombok.NoArgsConstructor;
 @Table(name = "products")
 public class Product extends BaseEntity {
 
-
     @Column(name = "title")
     private String title;
 
@@ -24,7 +22,5 @@ public class Product extends BaseEntity {
 
     @Column(name = "price")
     private int price;
-
-
 
 }

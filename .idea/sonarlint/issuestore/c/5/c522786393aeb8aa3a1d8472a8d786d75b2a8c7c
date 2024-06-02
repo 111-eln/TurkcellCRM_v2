@@ -1,5 +1,4 @@
 
-n	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(õÌ×:
-V	java:S125"<This block of commented-out lines of code should be removed.(ßËÔžýÿÿÿÿ
-V	java:S125"<This block of commented-out lines of code should be removed.(šöˆŽûÿÿÿÿ
-Q	java:S125 "<This block of commented-out lines of code should be removed.(»¥‡Â
+”	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(õÌ×:J$9b544645-1417-48ca-a7ca-8f4b3d5cfd9f
+s
+java:S1128	"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8ÚÕªÏý1J$7e94cd31-0e9c-4fa8-80b9-4f59e6513cfa

@@ -15,11 +15,6 @@ import java.util.List;
 @Table(name = "orders")
 public class Order extends BaseEntity {
 
-
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "account_id", referencedColumnName = "id")
-//    private Account account;
-
     @Column(name="addressId")
     private int addressId;
 
@@ -28,6 +23,4 @@ public class Order extends BaseEntity {
 
     @Column(name = "totalAmount")
     private int totalAmount;
-
-
 }

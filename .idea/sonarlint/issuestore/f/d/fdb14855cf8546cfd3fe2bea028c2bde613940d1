@@ -1,0 +1,5 @@
+
+ˆ	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(›åµ8†—ÕÏı1J$4220c010-5eb0-4632-84ba-501fb6491644
+¡	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(•ºÿºúÿÿÿÿ8Š—ÕÏı1J$0247c046-ebf1-4218-90ee-6c5576666d1e
+X
+java:S1128"6Remove this unused import 'lombok.AllArgsConstructor'.(´œ¾öùÿÿÿÿ8µ×Ïı1

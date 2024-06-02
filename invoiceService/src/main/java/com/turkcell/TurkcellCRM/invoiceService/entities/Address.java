@@ -1,7 +1,6 @@
 package com.turkcell.TurkcellCRM.invoiceService.entities;
 
-import com.turkcell.TurkcellCRM.commonPackage.BaseEntity;
-import com.turkcell.TurkcellCRM.commonPackage.Customer;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

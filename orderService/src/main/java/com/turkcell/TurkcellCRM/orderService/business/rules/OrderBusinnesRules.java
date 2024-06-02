@@ -54,7 +54,4 @@ public class OrderBusinnesRules {
             throw new BusinessException(Messages.OrderErrorMessages.CUSTOMER_NOT_FOUND);
         }
     }
-
-    pu
-
 }

@@ -1,2 +1,4 @@
 
-o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(’ŸÝ˜
+•	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(’ŸÝ˜J$c388182e-0c86-4350-8492-516da1662a14
+Ž
+java:S1128"FRemove this unused import 'org.springframework.stereotype.Repository'.(¦ýÍýüÿÿÿÿ8 ñ’Íý1J$bf1da3ce-e308-4a8f-a9e0-3cf6d96eda51

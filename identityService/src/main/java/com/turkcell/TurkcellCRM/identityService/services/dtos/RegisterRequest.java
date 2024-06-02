@@ -26,5 +26,4 @@ public class RegisterRequest {
 
     @NotNull
     private String lastName;
-
 }

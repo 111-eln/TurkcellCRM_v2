@@ -194,7 +194,7 @@ class IndividualCustomerManagerTest {
         UpdateIndividualCustomerRequest request = new UpdateIndividualCustomerRequest();
 
         modelMapperService.forRequest().map(request,IndividualCustomer.class);
-        CreateIndividualCustomerRequest createIndividualCustomerRequest=modelMapperService.forRequest().map(customer, CreateIndividualCustomerRequest.class);
+
         when(individualCustomerRepository.findByNationalityNumber("98765432102")).thenReturn(Optional.of(new IndividualCustomer()));
         when(individualCustomerRepository.findById(1)).thenReturn(Optional.of(new IndividualCustomer()));
         when(individualCustomerRepository.save(customer)).thenReturn(new IndividualCustomer());

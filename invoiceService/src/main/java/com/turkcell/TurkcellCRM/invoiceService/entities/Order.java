@@ -1,10 +1,6 @@
 package com.turkcell.TurkcellCRM.invoiceService.entities;
 
 
-
-import com.turkcell.TurkcellCRM.commonPackage.Address;
-import com.turkcell.TurkcellCRM.commonPackage.Product;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,7 +30,5 @@ public class Order {
     private List<Product> products;
     @Field(name="totalAmount")
     private int totalAmount;
-//    @Field(name="customerId")
-//    private int customerId;
 
 }
