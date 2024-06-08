@@ -1,8 +1,6 @@
 package com.turkcell.TurkcellCRM.searchService.kafka;
 
-import com.turkcell.TurkcellCRM.commonPackage.IndividualCustomerCreatedEvent;
 import com.turkcell.TurkcellCRM.commonPackage.ProductCreatedEvent;
-import com.turkcell.TurkcellCRM.searchService.business.abstracts.SearchService;
 import com.turkcell.TurkcellCRM.searchService.entities.Product;
 import com.turkcell.TurkcellCRM.searchService.repositories.SearchProductRepository;
 import lombok.RequiredArgsConstructor;
@@ -19,10 +17,12 @@ public class ProductConsumer {
 
     @KafkaListener(topics = "product-created",groupId="product-create")
     public void consume(ProductCreatedEvent productCreatedEvent) {
+
         Product product=new Product();
         product.setTitle(productCreatedEvent.getTitle());
         product.setDescription(productCreatedEvent.getDescription());
         product.setPrice(productCreatedEvent.getPrice());
+
         LOGGER.info(String.format("Product consumed =>%s",product.toString()));
 
         this.searchProductRepository.save(product);

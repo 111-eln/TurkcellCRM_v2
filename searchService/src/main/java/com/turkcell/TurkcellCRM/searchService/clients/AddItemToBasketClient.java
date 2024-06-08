@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 @FeignClient(name="basketservice",url="http://localhost:8086/api/v1/basket")
-
 public interface AddItemToBasketClient {
     @PostMapping
     public void addItem(@RequestParam String customerId, @RequestParam String productId);

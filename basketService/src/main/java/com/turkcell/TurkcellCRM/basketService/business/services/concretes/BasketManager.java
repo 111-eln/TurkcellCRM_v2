@@ -3,9 +3,7 @@ package com.turkcell.TurkcellCRM.basketService.business.services.concretes;
 import com.turkcell.TurkcellCRM.basketService.business.rules.BasketBusinessRules;
 import com.turkcell.TurkcellCRM.basketService.business.services.abstracts.BasketService;
 import com.turkcell.TurkcellCRM.basketService.clients.CreateOrderClient;
-import com.turkcell.TurkcellCRM.basketService.clients.CustomerClient;
 import com.turkcell.TurkcellCRM.basketService.clients.ProductClient;
-import com.turkcell.TurkcellCRM.basketService.core.exceptions.types.BusinessException;
 import com.turkcell.TurkcellCRM.basketService.core.mapping.ModelMapperService;
 import com.turkcell.TurkcellCRM.basketService.dtos.CreateOrderRequest;
 import com.turkcell.TurkcellCRM.basketService.entities.Basket;
@@ -46,7 +44,7 @@ public class BasketManager implements BasketService {
 
         GetProductResponse product=productClient.getProductByID(Integer.parseInt(productId));
 
-        basketBusinessRules.productShouldHaveStock(product.getUnitOfStock());
+      //  basketBusinessRules.productShouldHaveStock(product.getUnitOfStock());
 
         BasketItem basketItem = new BasketItem();
         basketItem.setProductId(Integer.parseInt(productId));
@@ -75,6 +73,12 @@ public class BasketManager implements BasketService {
         }
 
         List<BasketItem> basketItems=basket.getBasketItems();
+        for (BasketItem item : basketItems) {
+            GetProductResponse getProductResponse= productClient.getProductByID(item.getProductId());
+           item.setTitle(getProductResponse.getTitle());
+           item.setDescription(getProductResponse.getDescription());
+           item.setPrice(getProductResponse.getPrice());
+        }
 
         List<Product> productList =basketItems.stream().map(basketItem->  modelMapperService.forResponse().map(basketItem, Product.class)).toList();
 

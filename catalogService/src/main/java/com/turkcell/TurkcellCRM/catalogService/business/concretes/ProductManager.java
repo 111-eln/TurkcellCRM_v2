@@ -73,6 +73,7 @@ public class ProductManager implements ProductService {
         return modelMapperService.forResponse().map(dbProduct,CreatedProductResponse.class);
     }
 
+    @Transactional
     @Override
     public boolean controlProductStock(String productTitle) {
 
@@ -114,8 +115,9 @@ public class ProductManager implements ProductService {
     public GetProductResponse getById(int id) {
 
         catalogServiceRules.productShouldBeExists(id);
-
-        return modelMapperService.forResponse().map(productRepository.findById(id), GetProductResponse.class);
+        Optional<Product> product = this.productRepository.findById(id);
+        GetProductResponse getProductResponse = new GetProductResponse(product.get().getTitle(),product.get().getDescription(),product.get().getPrice(),product.get().getUnitOfStock());
+        return getProductResponse;
     }
 
     public boolean existProductById(int id){

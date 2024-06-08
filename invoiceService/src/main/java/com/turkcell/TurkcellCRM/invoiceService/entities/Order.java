@@ -1,6 +1,7 @@
 package com.turkcell.TurkcellCRM.invoiceService.entities;
 
 
+import com.turkcell.TurkcellCRM.commonPackage.Product;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

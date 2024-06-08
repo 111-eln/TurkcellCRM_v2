@@ -4,7 +4,6 @@ import com.turkcell.TurkcellCRM.commonPackage.OrderCreatedEvent;
 import com.turkcell.TurkcellCRM.commonPackage.OrderCreatedForAccountEvent;
 import com.turkcell.TurkcellCRM.orderService.business.abstracts.OrderService;
 import com.turkcell.TurkcellCRM.orderService.business.rules.OrderBusinnesRules;
-import com.turkcell.TurkcellCRM.orderService.clients.IsCustomerExistClient;
 import com.turkcell.TurkcellCRM.orderService.core.mapping.ModelMapperService;
 import com.turkcell.TurkcellCRM.orderService.dataAccess.OrderRepository;
 import com.turkcell.TurkcellCRM.orderService.dataAccess.ProductRepository;
@@ -24,6 +23,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -58,11 +58,18 @@ public class OrderManager implements OrderService {
         }
 
         OrderCreatedEvent orderCreatedEvent=modelMapperService.forResponse().map(dbOrder,OrderCreatedEvent.class);
+
         orderProducer.sendMessage(orderCreatedEvent);
+
         OrderCreatedForAccountEvent orderCreatedForAccountEvent=modelMapperService.forResponse().map(dbOrder,OrderCreatedForAccountEvent.class);
         orderCreatedForAccountEvent.setOrderId(dbOrder.getId());
+
         orderForAccountProducer.sendMessage(orderCreatedForAccountEvent);
-        return modelMapperService.forResponse().map(dbOrder, CreateOrderResponse.class);
+       CreateOrderResponse createOrderResponse = new CreateOrderResponse(dbOrder.getCustomerId(),dbOrder.getAddressId(),dbOrder.getCustomerId(),dbOrder.getTotalAmount(),productRepository.getAllByOrderId(dbOrder.getId()));
+
+        //modelMapperService.forResponse().map(dbOrder, CreateOrderResponse.class);
+
+        return createOrderResponse ;
     }
 
     @Transactional
@@ -70,7 +77,6 @@ public class OrderManager implements OrderService {
     public void delete(int id) {
 
         orderBusinnesRules.orderShouldBeExists(id);
-
         Order currentOrder = this.orderRepository.findById(id).get();
         currentOrder.setDeleted(true);
         currentOrder.setDeletedDate(LocalDateTime.now());
@@ -82,7 +88,6 @@ public class OrderManager implements OrderService {
     public GetOrderResponse getById(int id) {
 
         orderBusinnesRules.orderShouldBeExists(id);
-
         Order order = orderRepository.findById(id).get();
         return modelMapperService.forResponse().map(order, GetOrderResponse.class) ;
     }
@@ -105,7 +110,6 @@ public class OrderManager implements OrderService {
     public List<GetOrderResponse> getAll() {
 
         orderBusinnesRules.ordersShouldBeExist();
-
         List<Order> orders=orderRepository.findAll();
 
         return  orders.stream().map(order->  modelMapperService.forResponse().map(order, GetOrderResponse.class)).toList();

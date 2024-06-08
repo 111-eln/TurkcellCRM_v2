@@ -14,9 +14,11 @@ import org.springframework.stereotype.Service;
 public class ProductProducer {
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductProducer.class);
     private final KafkaTemplate<String,Object> kafkaTemplate;
+
     public ProductProducer(KafkaTemplate<String,Object> kafkaTemplate){
         this.kafkaTemplate = kafkaTemplate;
     }
+
     public void sendMessage(ProductCreatedEvent productCreatedEvent){
         LOGGER.info(String.format("Product added =>%s",productCreatedEvent.toString()));
 

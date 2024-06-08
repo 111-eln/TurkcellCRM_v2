@@ -23,4 +23,6 @@ public class Order extends BaseEntity {
 
     @Column(name = "totalAmount")
     private int totalAmount;
+
+
 }

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class IndividualCustomerConsumer {
+
     private static final Logger LOGGER = LoggerFactory.getLogger(IndividualCustomerConsumer.class);
     private final SearchService searchService;
 

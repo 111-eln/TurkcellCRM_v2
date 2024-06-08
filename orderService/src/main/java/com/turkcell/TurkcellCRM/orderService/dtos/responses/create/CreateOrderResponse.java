@@ -20,6 +20,6 @@ public class CreateOrderResponse {
     private int customerId;
     @NotNull
     private int totalAmount;
-    @NotNull
+
     private List<Product> products;
 }
