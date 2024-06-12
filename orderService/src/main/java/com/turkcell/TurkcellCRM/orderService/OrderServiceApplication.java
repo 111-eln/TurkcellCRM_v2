@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 @EnableFeignClients
-//@EnableSecurity
+@EnableSecurity()
 public class OrderServiceApplication {
 
 	public static void main(String[] args) {
