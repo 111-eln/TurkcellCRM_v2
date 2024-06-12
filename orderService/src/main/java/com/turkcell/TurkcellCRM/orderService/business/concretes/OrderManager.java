@@ -30,7 +30,7 @@ import java.util.Optional;
 public class OrderManager implements OrderService {
     private ModelMapperService modelMapperService;
     private OrderRepository orderRepository;
-    private ProductRepository productRepository;
+    private ProductService productService;
     private OrderProducer orderProducer;
     private OrderForAccountProducer orderForAccountProducer;
     private OrderBusinnesRules orderBusinnesRules;
@@ -54,7 +54,7 @@ public class OrderManager implements OrderService {
             orderBusinnesRules.productStockIsEnoughClient(product.getTitle());
 
             product.setOrderId(dbOrder.getId());
-            productRepository.save(product);
+            productService.add(product);
         }
 
         OrderCreatedEvent orderCreatedEvent=modelMapperService.forResponse().map(dbOrder,OrderCreatedEvent.class);
