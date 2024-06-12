@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 @EnableFeignClients
+@EnableSecurity()
 public class BasketServiceApplication {
 
 	public static void main(String[] args) {
