@@ -7,6 +7,8 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class ProductManager implements ProductService {
@@ -15,5 +17,10 @@ public class ProductManager implements ProductService {
     @Override
     public Product add(Product product) {
         return productRepository.save(product);
+    }
+
+    @Override
+    public List<Product> getAllByOrderId(int id) {
+        return productRepository.getAllByOrderId(id);
     }
 }

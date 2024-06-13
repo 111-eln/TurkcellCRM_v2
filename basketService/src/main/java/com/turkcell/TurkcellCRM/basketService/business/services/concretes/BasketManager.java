@@ -44,7 +44,7 @@ public class BasketManager implements BasketService {
 
         GetProductResponse product=productClient.getProductByID(Integer.parseInt(productId));
 
-      //  basketBusinessRules.productShouldHaveStock(product.getUnitOfStock());
+        basketBusinessRules.productShouldHaveStock(product.getUnitOfStock());
 
         BasketItem basketItem = new BasketItem();
         basketItem.setProductId(Integer.parseInt(productId));

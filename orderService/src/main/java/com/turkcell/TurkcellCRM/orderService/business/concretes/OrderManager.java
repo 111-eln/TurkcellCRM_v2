@@ -3,6 +3,7 @@ package com.turkcell.TurkcellCRM.orderService.business.concretes;
 import com.turkcell.TurkcellCRM.commonPackage.OrderCreatedEvent;
 import com.turkcell.TurkcellCRM.commonPackage.OrderCreatedForAccountEvent;
 import com.turkcell.TurkcellCRM.orderService.business.abstracts.OrderService;
+import com.turkcell.TurkcellCRM.orderService.business.abstracts.ProductService;
 import com.turkcell.TurkcellCRM.orderService.business.rules.OrderBusinnesRules;
 import com.turkcell.TurkcellCRM.orderService.core.mapping.ModelMapperService;
 import com.turkcell.TurkcellCRM.orderService.dataAccess.OrderRepository;
@@ -65,7 +66,7 @@ public class OrderManager implements OrderService {
         orderCreatedForAccountEvent.setOrderId(dbOrder.getId());
 
         orderForAccountProducer.sendMessage(orderCreatedForAccountEvent);
-       CreateOrderResponse createOrderResponse = new CreateOrderResponse(dbOrder.getCustomerId(),dbOrder.getAddressId(),dbOrder.getCustomerId(),dbOrder.getTotalAmount(),productRepository.getAllByOrderId(dbOrder.getId()));
+       CreateOrderResponse createOrderResponse = new CreateOrderResponse(dbOrder.getCustomerId(),dbOrder.getAddressId(),dbOrder.getCustomerId(),dbOrder.getTotalAmount(),productService.getAllByOrderId(dbOrder.getId()));
 
         //modelMapperService.forResponse().map(dbOrder, CreateOrderResponse.class);
 
