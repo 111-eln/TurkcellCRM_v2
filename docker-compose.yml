@@ -1,0 +1,241 @@
+version: '3.8'
+
+services:
+  zookeeper:
+    image: 'bitnami/zookeeper:latest'
+    container_name: zookeeper
+    ports:
+      - "2181:2181"
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+
+  kafka:
+    image: 'bitnami/kafka:latest'
+    container_name: kafka
+    ports:
+        - "9092:9092"
+    depends_on:
+      - zookeeper
+    environment:
+      - KAFKA_BROKER_ID=1
+      - KAFKA_CFG_LISTENERS=LISTENER_DEVELOPMENT://localhost:9092,LISTENER_PRODUCTION://kafka:29092
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=LISTENER_DEVELOPMENT:PLAINTEXT,LISTENER_PRODUCTION:PLAINTEXT
+      - KAFKA_CFG_ADVERTISED_LISTENERS=LISTENER_DEVELOPMENT://localhost:9092,LISTENER_PRODUCTION://kafka:29092
+      - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=LISTENER_PRODUCTION
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+      - ALLOW_PLAINTEXT_LISTENER=yes
+
+
+  configserver:
+    image: configserverimage
+    build: ./configserver
+    restart: always
+    container_name: configserver
+    volumes:
+      - ./configserver:/app
+
+    ports:
+      - 8052:8052
+  discoveryserver:
+    image: discoveryserverimage
+    build: ./discoveryserver
+    restart: always
+    container_name: discoveryserver
+    volumes:
+      - ./discoveryserver:/app
+
+    ports:
+      - 9020:9020
+    depends_on:
+      - configserver
+
+  gatewayservice:
+    image: gatewayserviceimage
+    build: ./gatewayservice
+    restart: always
+    container_name: gatewayservice
+    volumes:
+      - ./gatewayservice:/app
+
+    ports:
+      - 9002:9002
+    depends_on:
+      - configserver
+      - discoveryserver
+
+  customerdbprod:
+    container_name: customerdbprod
+    image: postgres
+    ports:
+      - "5460:5432"
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=12345
+      - POSTGRES_DB=customerdbprod
+
+  customerservice:
+    build: ./customerservice
+    container_name: customerservice
+    image: customerserviceimage
+    volumes:
+      - ./customerservice:/app
+    depends_on:
+      - customerdbprod
+      - discoveryserver
+      - configserver
+      - kafka
+  identitydbprod:
+    container_name: identitydbprod
+    image: postgres
+    ports:
+      - "5461:5432"
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=12345
+      - POSTGRES_DB=identitydbprod
+
+  identityservice:
+    build: ./identityservice
+    container_name: identityservice
+    image: identityserviceimage
+    volumes:
+      - ./identityservice:/app
+    depends_on:
+      - identitydbprod
+      - discoveryserver
+      - configserver
+
+
+  accountdbprod:
+    container_name: accountdbprod
+    image: postgres
+    ports:
+      - "5462:5432"
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=12345
+      - POSTGRES_DB=accountdbprod
+
+  accountservice:
+    build: ./accountservice
+    container_name: accountservice
+    image: accountserviceimage
+    volumes:
+      - ./accountservice:/app
+    depends_on:
+      - accountdbprod
+      - discoveryserver
+      - configserver
+
+
+  catalogdbprod:
+    container_name: catalogdbprod
+    image: postgres
+    ports:
+      - "5463:5432"
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=12345
+      - POSTGRES_DB=catalogdbprod
+
+  catalogservice:
+    build: ./catalogservice
+    container_name: catalogservice
+    image: catalogserviceimage
+    volumes:
+      - ./catalogservice:/app
+    depends_on:
+      - accountdbprod
+      - discoveryserver
+      - configserver
+
+  commonpackage:
+    build: ./commonpackage
+    container_name: commonpackage
+    image: commonpackageimage
+    volumes:
+      - ./commonpackage:/app
+
+
+
+  orderdbprod:
+    container_name: orderdbprod
+    image: postgres
+    ports:
+      - "5464:5432"
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=12345
+      - POSTGRES_DB=orderdbprod
+
+  orderservice:
+    build: ./orderservice
+    container_name: orderservice
+    image: orderserviceimage
+    volumes:
+      - ./orderservice:/app
+    depends_on:
+      - accountdbprod
+      - discoveryserver
+      - configserver
+
+
+
+
+  invoicedbprod:
+    container_name: invoicedbprod
+    image: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=12345
+      - MONGO_INITDB_DATABASE=invoicedbprod
+
+  invoiceservice:
+    build: ./invoiceservice
+    container_name: invoiceservice
+    image: invoiceserviceimage
+    volumes:
+          - ./invoiceservice:/app
+    depends_on:
+      - invoicedbprod
+      - discoveryserver
+      - configserver
+
+
+  searchdbprod:
+    container_name: searchdbprod
+    image: mongo
+    ports:
+      - "27018:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=12345
+      - MONGO_INITDB_DATABASE=searchdbprod
+
+  searchservice:
+    build: ./searchservice
+    container_name: searchservice
+    image: searchserviceimage
+    volumes:
+      - ./searchservice:/app
+    depends_on:
+      - searchdbprod
+      - discoveryserver
+      - configserver
+
+  basketdbprod:
+    container_name: basketdbprod
+    image: redis
+    ports:
+      - "6380:6379"
+  basketservice:
+    build: ./basketService
+    container_name: basketservice
+    image: basketserviceimage
+    volumes:
+      - ./basketservice:/app
+
+
+
